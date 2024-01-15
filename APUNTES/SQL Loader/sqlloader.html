@@ -1,0 +1,781 @@
+<html>
+<head>
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Oracle SQL*Loader Loader</title>
+</head>
+
+<body background="../source/binary.gif" text="#000000" vlink="#800080" alink="#00FFFF" bgcolor="#FFFFFF">
+
+<div align="center">
+<table border="0" cellpadding="0" cellspacing="0" width="90%">
+  <tr>
+    <td bgcolor="#FF0000" align="center"><font face="Arial" color="#FFFFFF"><b>Oracle SQL*Loader</b></font></td>
+  </tr>
+  <tr>
+    <td ALIGN="center"><strong><font face="Arial">Version 10.2</font></strong></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td ALIGN="center">
+        <table border="1" cellpadding="2" cellspacing="1" width="100%" bgcolor="#D8D8C4">
+          <tr>
+    <td colspan="2"><strong><font face="Arial" color="#808000">General</font></strong></td>
+          </tr>
+          <tr>
+    <td colspan="2"><font face="Arial" size="2"><strong>Note:</strong> This page consists
+    of a series of demonstrations of various SQL*Loader capabilities. It is by no means
+      complete.<br>
+      <br>
+      For the Oracle doc:<br>
+      <a href="http://download-west.oracle.com/docs/cd/B19306_01/server.102/b14215/app_ldr_syntax.htm#i631434">
+      http://download-west.oracle.com/docs/cd/B19306_01/server.102/b14215/app_ldr_syntax.htm#i631434</a></font></td>
+          </tr>
+          <tr>
+    <td width="30%"><font face="Arial" size="2">SQL Loader Data Types</font></td>
+    <td width="70%"><font face="Courier">CHAR<br>
+    DECIMAL EXTERNAL<br>
+    INTEGER EXTERNAL</font></td>
+          </tr>
+          <tr>
+    <td width="30%"><font face="Arial" size="2">Modes</font></td>
+    <td width="70%"><font face="Courier">APPEND<br>
+    INSERT<br>
+    REPLACE<br>
+    TRUNCATE</font></td>
+          </tr>
+          <tr>
+    <td width="30%" rowspan="2"><font face="Arial" size="2">INFILE</font></td>
+    <td width="70%"><font face="Courier">INFILE * or INFILE '&lt;file_name&gt;'<br>
+      [RECSIZE &lt;integer&gt; BUFFERS &lt;integer&gt;]</font></td>
+          </tr>
+          <tr>
+    <td width="70%" bgcolor="#80FFFF"><font face="Courier">INFILE 'mydata.dat' "RECSIZE 80 BUFFERS 8"</font></td>
+          </tr>
+          <tr>
+    <td width="30%" rowspan="2"><font face="Arial" size="2">INTO</font></td>
+    <td width="70%"><font face="Courier">INTO &lt;table_name&gt;</font></td>
+          </tr>
+          <tr>
+    <td width="70%" bgcolor="#80FFFF"><font face="Courier">B</font></td>
+          </tr>
+          <tr>
+    <td width="30%" rowspan="2"><font face="Arial" size="2">BADFILE<br>
+      <br>
+      Records with formatting errors or that cause Oracle errors</font></td>
+    <td width="70%"><font face="Courier">BADFILE '&lt;file_name&gt;'</font></td>
+          </tr>
+          <tr>
+    <td width="70%" bgcolor="#80FFFF"><font face="Courier">BADFILE 'sample.bad'</font></td>
+          </tr>
+          <tr>
+    <td width="30%" rowspan="2"><font face="Arial" size="2">DISCARDFILE<br>
+      <br>
+      Records not satisfying a WHEN clause</font></td>
+    <td width="70%"><font face="Courier">DISCARDFILE '&lt;file_name&gt;'<br>
+      DISCARDMAX &lt;integer&gt;</font></td>
+          </tr>
+          <tr>
+    <td width="70%" bgcolor="#80FFFF"><font face="Courier">DISCARDFILE 'sample.dsc'</font></td>
+          </tr>
+          <tr>
+    <td width="30%" rowspan="2"><font face="Arial" size="2">CHARACTERSET</font></td>
+    <td width="70%"><font face="Courier">CHARACTERSET &lt;character_set_name&gt;</font></td>
+          </tr>
+          <tr>
+    <td width="70%" bgcolor="#80FFFF"><font face="Courier">X</font></td>
+          </tr>
+          <tr>
+    <td width="30%" rowspan="2"><font face="Arial" size="2">LENGTH</font></td>
+    <td width="70%"><font face="Courier">LENGTH [SEMANTICS] &lt;BYTE | CHAR&gt;</font></td>
+          </tr>
+          <tr>
+    <td width="70%" bgcolor="#80FFFF"><font face="Courier">CHARACTERSET &lt;character_set_name&gt;<br>
+      LENGTH</font></td>
+          </tr>
+          <tr>
+    <td width="30%" rowspan="2"><font face="Arial" size="2">Load Type</font></td>
+    <td width="70%"><font face="Courier">APPEND<br>
+      INSERT<br>
+      REPLACE</font></td>
+          </tr>
+          <tr>
+    <td width="70%" bgcolor="#80FFFF"><font face="Courier">INSERT INTO &lt;table_name&gt;</font></td>
+          </tr>
+          <tr>
+    <td width="30%"><font face="Arial" size="2">Terminators</font></td>
+    <td width="70%" align="center">
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr>
+            <td><font face="Courier">Comma</font></td>
+            <td><font face="Courier">','</font></td>
+          </tr>
+          <tr>
+            <td><font face="Courier">Tab</font></td>
+            <td><font face="Courier">0x'09'</font></td>
+          </tr>
+        </table>
+    </td>
+          </tr>
+          <tr>
+    <td width="30%" rowspan="2"><font face="Arial" size="2">WHEN</font></td>
+    <td width="70%"><font face="Courier">WHEN</font></td>
+          </tr>
+          <tr>
+    <td width="70%" bgcolor="#80FFFF"><font face="Courier">I</font></td>
+          </tr>
+          <tr>
+    <td width="30%" rowspan="2"><font face="Arial" size="2">TRAILING NULLCOLS</font></td>
+    <td width="70%"><font face="Courier">TRAILING NULLCOLS</font></td>
+          </tr>
+          <tr>
+    <td width="70%" bgcolor="#80FFFF"><font face="Courier">T</font></td>
+          </tr>
+          <tr>
+    <td width="30%" rowspan="2"><font face="Arial" size="2">Options Clause</font></td>
+    <td width="70%"><font face="Courier">BINDSIZE = n<br>
+      COLUMNARRAYROWS = n<br>
+      DIRECT = {TRUE | FALSE}&nbsp;<br>
+      ERRORS = n<br>
+      LOAD = n&nbsp;<br>
+      MULTITHREADING = {TRUE | FALSE}<br>
+      PARALLEL = {TRUE | FALSE}<br>
+      READSIZE = n<br>
+      RESUMABLE = {TRUE | FALSE}<br>
+      RESUMABLE_NAME = 'text string'<br>
+      RESUMABLE_TIMEOUT = n<br>
+      ROWS = n&nbsp;<br>
+      SILENT = {HEADER | FEEDBACK | ERRORS | DISCARDS | PARTITIONS | ALL}<br>
+      SKIP = n&nbsp;<br>
+      SKIP_INDEX_MAINTENANCE = {TRUE | FALSE}<br>
+      SKIP_UNUSABLE_INDEXES = {TRUE | FALSE}<br>
+      STREAMSIZE = n</font></td>
+          </tr>
+          <tr>
+    <td width="70%" bgcolor="#80FFFF"><font face="Courier">OPTIONS (BINDSIZE=100000, SILENT=(ERRORS, FEEDBACK) )</font></td>
+          </tr>
+          <tr>
+    <td width="30%" rowspan="2"><font face="Arial" size="2">Paths</font></td>
+    <td width="70%"><font face="Courier">CONVENTIONAL PATH<br>
+    DIRECT PATH<br>
+      <br>
+      All loads demonstrated below are convention with the exception of demo 6.</font></td>
+          </tr>
+          <tr>
+    <td width="70%" bgcolor="#80FFFF">&nbsp;</td>
+          </tr>
+          <tr>
+    <td colspan="2">&nbsp;</td>
+          </tr>
+          <tr>
+    <td colspan="2"><font face="Arial" color="#808000"><strong>Assembling Logical Records</strong></font></td>
+          </tr>
+          <tr>
+    <td width="30%" rowspan="2"><font face="Arial" size="2">CONCATENATE</font></td>
+    <td width="70%"><font face="Courier">CONCATENATE</font></td>
+          </tr>
+          <tr>
+    <td width="70%" bgcolor="#80FFFF">&nbsp;</td>
+          </tr>
+          <tr>
+    <td width="30%" rowspan="2"><font face="Arial" size="2">CONTINUEIF</font></td>
+    <td width="70%"><font face="Courier">CONTINUEIF THIS</font></td>
+          </tr>
+          <tr>
+    <td width="70%" bgcolor="#80FFFF">&nbsp;</td>
+          </tr>
+          <tr>
+    <td width="30%" rowspan="2"><font face="Arial" size="2">CONTINUEIF</font></td>
+    <td width="70%"><font face="Courier">CONTINUEIF NEXT</font></td>
+          </tr>
+          <tr>
+    <td width="70%" bgcolor="#80FFFF">&nbsp;</td>
+          </tr>
+          <tr>
+    <td width="30%" rowspan="2"><font face="Arial" size="2">CONTINUEIF</font></td>
+    <td width="70%"><font face="Courier">CONTINUEIF LAST</font></td>
+          </tr>
+          <tr>
+    <td width="70%" bgcolor="#80FFFF">&nbsp;</td>
+          </tr>
+          <tr>
+    <td colspan="2">&nbsp;</td>
+          </tr>
+          <tr>
+    <td colspan="2"><font face="Arial" color="#808000"><strong>Demo Tables &amp; Data</strong></font></td>
+          </tr>
+          <tr>
+    <td width="30%" valign="top"><font face="Arial" size="2"><br>
+      Demo Tables</font></td>
+    <td width="70%" bgcolor="#80FFFF"><font face="Courier">CREATE TABLE dept (<br>
+      deptno&nbsp;&nbsp; VARCHAR2(2),<br>
+      dname&nbsp;&nbsp;&nbsp; VARCHAR2(20),<br>
+      loc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; VARCHAR2(20));<br>
+      <br>
+      CREATE TABLE emp (<br>
+      empno&nbsp;&nbsp;&nbsp; NUMBER(4),<br>
+      ename&nbsp;&nbsp;&nbsp; VARCHAR2(10),<br>
+      job&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; VARCHAR2(10),<br>
+      mgr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NUMBER(4),<br>
+      hiredate DATE,<br>
+      sal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NUMBER(8,2),<br>
+      comm&nbsp;&nbsp;&nbsp;&nbsp; NUMBER(7,2),<br>
+      deptno&nbsp;&nbsp; NUMBER(2),<br>
+      projno&nbsp;&nbsp; NUMBER(4),<br>
+      loadseq&nbsp; NUMBER(3)); <br>
+      <br>
+      CREATE TABLE proj (<br>
+      emp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NUMBER(4),<br>
+      projno&nbsp;&nbsp; NUMBER(3)); <br>
+      <br>
+      CREATE TABLE funcdemo (<br>
+      last_name&nbsp; VARCHAR2(20),<br>
+      first_name VARCHAR2(20));<br>
+      <br>
+      CREATE TABLE decodemo (<br>
+      fld1&nbsp;&nbsp;&nbsp; VARCHAR2(20),<br>
+      fld2&nbsp;&nbsp;&nbsp; VARCHAR2(20));<br>
+      <br>
+      CREATE TABLE denver_prj (<br>
+      projno&nbsp; VARCHAR2(3),<br>
+      empno&nbsp;&nbsp; NUMBER(5),<br>
+      projhrs NUMBER(2));<br>
+      <br>
+      CREATE TABLE orlando_prj (<br>
+      projno&nbsp; VARCHAR2(3),<br>
+      empno&nbsp;&nbsp; NUMBER(5),<br>
+      projhrs NUMBER(2));<br>
+      <br>
+      CREATE TABLE misc_prj (<br>
+      projno&nbsp; VARCHAR2(3),<br>
+      empno&nbsp;&nbsp; NUMBER(5),<br>
+      projhrs NUMBER(2));<br>
+      <br>
+      CREATE TABLE po_tab (<br>
+      xmldata XMLTYPE);</font></td>
+          </tr>
+          <tr>
+    <td colspan="2">&nbsp;</td>
+          </tr>
+          <tr>
+    <td colspan="2"><strong><font face="Arial" color="#808000">Demo 1</font></strong></td>
+          </tr>
+          <tr>
+    <td colspan="2"><font face="Arial" size="2">Basic import of delimited data with data in the control file</font></td>
+          </tr>
+          <tr>
+    <td width="30%" rowspan="2"><p align="center"><a href="sqlldr01.ctl"><font face="Arial" size="2">Control File</font></a></td>
+    <td width="70%"><font face="Courier">OPTIONS (ERRORS=500, SILENT=(FEEDBACK))<br>
+      LOAD DATA<br>
+    INFILE <font color="#0000FF">*</font><br>
+    INTO TABLE &lt;table_name&gt;<br>
+      <font color="#0000FF">FIELDS TERMINATED BY</font> &lt;delimiter&gt;<br>
+      <font color="#0000FF">OPTIONALLY ENCLOSED BY</font> &lt;enclosing character&gt;<br>
+    (&lt;column_name&gt;, &lt;column_name&gt;, &lt;column_name&gt;)</font></td>
+          </tr>
+          <tr>
+    <td width="70%" bgcolor="#80FFFF"><FONT FACE="Courier">
+    sqlldr userid=uwclass/uwclass control=c:\load\demo1.ctl log=d:\load\sqlldr01.log</FONT></td>
+          </tr>
+          <tr>
+    <td colspan="2">&nbsp;</td>
+          </tr>
+          <tr>
+    <td colspan="2"><strong><font face="Arial" color="#808000">Demo 2</font></strong></td>
+          </tr>
+          <tr>
+    <td colspan="2"><font face="Arial" size="2">Basic import of fixed length data with separate data and control files</font></td>
+          </tr>
+          <tr>
+    <td width="30%" rowspan="2"><p align="center"><font face="Arial" size="2"><a href="sqlldr02.ctl">Control File</a><br>
+    <br>
+    <a href="sqlldr02.dat">Data File</a></font></td>
+    <td width="70%"><font face="Courier">LOAD DATA<br>
+    <font color="#000000">INFILE </font><font color="#0000FF">&lt;data_file_path_and_name&gt;</font><br>
+    INTO TABLE &lt;table_name&gt; (<br>
+    &lt;column_name&gt; <font color="#0000FF">POSITION</font>(&lt;integer&gt;<font color="#FF0000">:</font>&lt;integer&gt;) &lt;data_type&gt;,<br>
+    &lt;column_name&gt; POSITION(&lt;integer&gt;:&lt;integer&gt;) &lt;data_type&gt;,<br>
+    &lt;column_name&gt; POSITION(&lt;integer&gt;:&lt;integer&gt;) &lt;data_type&gt;)</font></td>
+          </tr>
+          <tr>
+    <td width="70%" bgcolor="#80FFFF"><FONT FACE="Courier">sqlldr userid=uwclass/uwclass control=c:\load\sqlldr02.ctl log=c:\load\demo02.log</FONT></td>
+          </tr>
+          <tr>
+    <td colspan="2">&nbsp;</td>
+          </tr>
+          <tr>
+    <td colspan="2"><strong><font face="Arial" color="#808000">Demo 3</font></strong></td>
+          </tr>
+          <tr>
+    <td colspan="2"><font face="Arial" size="2">Append of delimited data with data in the
+      control file. This sample demonstrates date formating, delimiters within delimiters and
+      implementation of record numbering with a SQL*Loader sequence. APPEND indicates that
+      the table need not be empty before the SQL*Loader is run.</font></td>
+          </tr>
+          <tr>
+    <td width="30%" rowspan="2"><p align="center"><a href="sqlldr03.ctl"><font face="Arial" size="2">Control File</font></a></td>
+    <td width="70%"><font face="Courier">LOAD DATA<br>
+    INFILE *<br>
+      <font color="#0000FF">APPEND</font><br>
+    INTO TABLE emp<br>
+    FIELDS TERMINATED BY &quot;,&quot;<br>
+    OPTIONALLY ENCLOSED BY '&quot;'<br>
+    (&lt;column_name&gt;, &lt;column_name&gt; DATE <font color="#0000FF">&quot;DD-Month-YYYY&quot;</font>,<br>
+    &lt;column_name&gt; <font color="#0000FF">CHAR TERMINATED BY ':'</font>,<br>
+    &lt;column_name&gt; <font color="#0000FF">SEQUENCE(MAX,1)</font>)</font></td>
+          </tr>
+          <tr>
+    <td width="70%" bgcolor="#80FFFF"><FONT FACE="Courier">
+    sqlldr userid=uwclass/uwclass control=c:\load\sqldr03.ctl log=c:\load\demo3.log</FONT></td>
+          </tr>
+          <tr>
+    <td colspan="2">&nbsp;</td>
+          </tr>
+          <tr>
+    <td colspan="2"><strong><font face="Arial" color="#808000">Demo 4</font></strong></td>
+          </tr>
+          <tr>
+    <td colspan="2"><font face="Arial" size="2">Replace of fixed length data with separate data and control file. This sample 
+    demonstrates specifying a discard file, the maximum number of records to discard (DISCARDMAX), and CONTINUEIF ( 
+    <font face="MS Sans Serif" color="#800080"> where it looks for an asterisk in the first position to determine if a new 
+    line has started.</font></font></td>
+          </tr>
+          <tr>
+    <td width="30%" rowspan="2" align="center"><font face="Arial" size="2"><a href="sqlldr04.ctl">Control File</a><br>
+    <br>
+    <a href="sqlldr04.dat">Data File</a></font></td>
+    <td width="70%"><font face="Courier">LOAD DATA<br>
+    INFILE 'c:\temp\sqlldr04.dat'<br>
+      <font color="#0000FF">DISCARDFILE 'c:\temp\demo4.dsc'<br>
+      DISCARDMAX 999<br>
+      REPLACE<br>
+      CONTINUEIF THIS (1) = '*'</font><br>
+    INTO TABLE emp (<br>
+    empno&nbsp;&nbsp;&nbsp;&nbsp;POSITION(1:4)&nbsp;&nbsp;&nbsp;INTEGER EXTERNAL,<br>
+    ename&nbsp;&nbsp;&nbsp;&nbsp;POSITION(6:15)&nbsp;&nbsp;CHAR,<br>
+    hiredate POSITION(52:60)&nbsp;INTEGER EXTERNAL)</font></td>
+          </tr>
+          <tr>
+    <td width="70%" bgcolor="#80FFFF"><FONT FACE="Courier">
+    sqlldr userid=uwclass/uwclass control=c:\load\sqlldr04.ctl log=c:\load\demo4.log</FONT></td>
+          </tr>
+          <tr>
+    <td colspan="2">&nbsp;</td>
+          </tr>
+          <tr>
+    <td colspan="2"><strong><font face="Arial" color="#808000">Demo 5</font></strong></td>
+          </tr>
+          <tr>
+    <td colspan="2"><font face="Arial" size="2">Loading into multiple tables during an import using the WHEN keyword. The 
+      c<font face="MS Sans Serif" color="#800080">ontrol file loads two different tables making three passes at one
+      of them. Note the problem with the Doolittle record and how it is handled.</font></font></td>
+          </tr>
+          <tr>
+    <td width="30%" rowspan="2"><p align="center"><font face="Arial" size="2"><a href="sqlldr05.ctl">Control File</a><br>
+    <br>
+    <a href="sqlldr05.dat">Data File</a></font></td>
+    <td width="70%"><font face="Courier">LOAD DATA<BR>
+      INFILE 'c:\temp\sqlldr05.dat'<BR>
+      <font color="#0000FF">BADFILE</font> 'c:\temp\bad05.bad'<BR>
+      DISCARDFILE 'c:\temp\disc05.dsc'<BR>
+      REPLACE<BR>
+      <BR>
+      INTO TABLE emp (<BR>
+      empno&nbsp; POSITION(1:4)&nbsp;&nbsp; INTEGER EXTERNAL,<BR>
+      ename&nbsp; POSITION(6:15)&nbsp; CHAR,<BR>
+      deptno	POSITION(17:18)	CHAR,<BR>
+      mgr&nbsp;&nbsp;&nbsp; POSITION(20:23)	INTEGER EXTERNAL)<BR>
+      <BR>
+      --1st project: proj has two columns, both not null<BR>
+      INTO TABLE proj<BR>
+      <font color="#0000FF">WHEN</font> projno != '   ' (<BR>
+      emp&nbsp;&nbsp;&nbsp; POSITION(1:4)&nbsp;&nbsp; INTEGER EXTERNAL,<BR>
+      projno	POSITION(25:27)	INTEGER EXTERNAL)<BR>
+      <BR>
+      -- 2nd project<BR>
+      INTO TABLE proj<BR>
+      <font color="#0000FF">
+      WHEN</font> projno != '   ' (<BR>
+      emp&nbsp;&nbsp;&nbsp; POSITION(1:4)&nbsp;&nbsp; INTEGER EXTERNAL,<BR>
+      projno	POSITION(29:31)	INTEGER EXTERNAL)<BR>
+      <BR>
+      -- 3rd project<BR>
+      INTO TABLE proj<BR>
+      <font color="#0000FF">
+      WHEN</font> projno != '   ' (<BR>
+      emp&nbsp;&nbsp;&nbsp; POSITION(1:4)&nbsp;&nbsp; INTEGER EXTERNAL,<BR>
+      projno	POSITION(33:35)	INTEGER EXTERNAL)</font></td>
+          </tr>
+          <tr>
+    <td width="70%" bgcolor="#80FFFF"><FONT FACE="Courier">
+    sqlldr userid=uwclass/uwclass control=c:\load\sqlldr5.ctl log=d:\load\demo5.log</FONT></td>
+          </tr>
+          <tr>
+    <td colspan="2">&nbsp;</td>
+          </tr>
+          <tr>
+    <td colspan="2"><strong><font face="Arial" color="#808000">Demo 6</font></strong></td>
+          </tr>
+          <tr>
+    <td colspan="2"><FONT FACE="Arial" size="2">Using the NULLIF and BLANKS keywords to handle zero length strings being loaded 
+    into numeric columns. Also note the use of Direct Path Load in the control file
+      (<b>DIRECT=TRUE</b>).</FONT></td>
+          </tr>
+          <tr>
+    <td width="30%" rowspan="2"><p align="center"><font face="Arial" size="2"><a href="sqlldr06.ctl">Control File</a><br>
+    <br>
+    <a href="sqlldr06.dat">Data File</a></font></td>
+    <td width="70%"><FONT FACE="Courier">LOAD DATA<BR>
+      INFILE 'c:\temp\sqlldr06.dat'<BR>
+      INSERT<BR>
+      INTO TABLE emp<BR>
+      <b><font color="#FF0000">
+      -- SORTED INDEXES (emp_empno)</font></b><BR>
+      (<BR>
+      empno&nbsp; POSITION(01:04)	INTEGER EXTERNAL <font color="#0000FF"> NULLIF</font>
+      empno=<font color="#0000FF">BLANKS</font>,<BR>
+      ename&nbsp; POSITION(06:15)	CHAR,<BR>
+      job&nbsp;&nbsp;&nbsp; POSITION(17:25) CHAR,<BR>
+      mgr&nbsp;&nbsp;&nbsp; POSITION(27:30)	INTEGER EXTERNAL <font color="#0000FF"> NULLIF</font>
+      mgr=<font color="#0000FF">BLANKS</font>,<BR>
+      sal&nbsp;&nbsp;&nbsp; POSITION(32:39)	DECIMAL EXTERNAL <font color="#0000FF"> NULLIF</font>
+      sal=<font color="#0000FF">BLANKS</font>,<BR>
+      comm&nbsp;&nbsp; POSITION(41:48)	DECIMAL EXTERNAL <font color="#0000FF"> NULLIF</font>
+      comm=<font color="#0000FF">BLANKS</font>,<BR>
+      deptno	POSITION(50:51) INTEGER EXTERNAL <font color="#0000FF"> NULLIF</font>
+      deptno=<font color="#0000FF">BLANKS</font>)</FONT></td>
+          </tr>
+          <tr>
+    <td width="70%" bgcolor="#80FFFF"><FONT FACE="Courier">
+    sqlldr userid=uwclass/uwclass control=c:\load\sqlldr06.ctl log=c:\load\demo6.log direct=true</FONT></td>
+          </tr>
+          <tr>
+    <td colspan="2">&nbsp;</td>
+          </tr>
+          <tr>
+    <td colspan="2"><font face="Arial" color="#808000"><strong>Demo 7</strong></font></td>
+          </tr>
+          <tr>
+    <td colspan="2"><FONT FACE="Arial" size="2">Using a buit-in function to modify data during loading</FONT></td>
+          </tr>
+          <tr>
+    <td width="30%" rowspan="2"><p align="center"><font face="Arial" size="2"><a href="sqlldr07.ctl">Control File</a><br>
+    </font></td>
+    <td width="70%"><FONT FACE="Courier">LOAD DATA<BR>
+      INFILE *<BR>
+      INSERT<BR>
+      INTO TABLE funcdemo<BR>
+      (<BR>
+      LAST_NAME&nbsp; position(1:7)&nbsp; CHAR <font color="#0000FF"> &quot;UPPER(:LAST_NAME)&quot;</font>,<BR>
+      FIRST_NAME position(8:15) CHAR <font color="#0000FF">&quot;LOWER(:FIRST_NAME)&quot;</font><BR>
+      )<BR>
+      BEGINDATA<BR>
+      Locke  Phil<BR>
+      Cline  Jack</FONT></td>
+          </tr>
+          <tr>
+    <td width="70%" bgcolor="#80FFFF"><FONT FACE="Courier">
+    sqlldr userid=uwclass/uwclass control=c:\load\sqlldr7.ctl log=c:\load\demo7.log</FONT></td>
+          </tr>
+          <tr>
+    <td colspan="2">&nbsp;</td>
+          </tr>
+          <tr>
+    <td colspan="2"><font face="Arial" color="#808000"><strong>Demo 8</strong></font></td>
+          </tr>
+          <tr>
+    <td colspan="2"><FONT FACE="Arial" size="2">Another example of using a
+      built-in function, in this case DECODE, to modify data during loading</FONT></td>
+          </tr>
+          <tr>
+    <td width="30%" rowspan="2"><p align="center"><font face="Arial" size="2"><a href="sqlldr08.ctl">Control File</a><br>
+    <br>
+    </font></td>
+    <td width="70%"><FONT FACE="Courier">LOAD DATA<BR>
+      INFILE *<BR>
+      INSERT<BR>
+      INTO TABLE decodemo<BR>
+      FIELDS TERMINATED BY ','<BR>
+      OPTIONALLY ENCLOSED BY '"'<BR>
+      (<BR>
+      fld1,&nbsp;<BR>
+      fld2 <font color="#0000FF"> "DECODE(:fld1, 'hello', 'goodbye', :fld1)"</font><BR>
+      )<BR>
+      BEGINDATA<BR>
+      hello,""<BR>
+      goodbye,""<BR>
+      this is a test,""<BR>
+      hello,""</FONT></td>
+          </tr>
+          <tr>
+    <td width="70%" bgcolor="#80FFFF"><FONT FACE="Courier">
+    sqlldr userid=uwclass/uwclass control=c:\load\sqlldr08.ctl log=c:\load\demo8.log</FONT></td>
+          </tr>
+          <tr>
+    <td colspan="2">&nbsp;</td>
+          </tr>
+          <tr>
+    <td colspan="2"><font face="Arial" color="#808000"><strong>Demo 9</strong></font></td>
+          </tr>
+          <tr>
+    <td colspan="2"><FONT FACE="Arial" size="2">
+    Loading multiple files into multiple tables in a singe control file. Note the use of the WHEN keyword.</FONT></td>
+          </tr>
+          <tr>
+    <td width="30%" rowspan="2"><p align="center"><font face="Arial" size="2"><a href="sqlldr09.ctl">Control File</a><br>
+    <br>
+    <a href="sqlldr9a.dat">Data File</a><br>
+    <br>
+    <a href="sqlldr9b.dat">Data File</a></font></td>
+    <td width="70%"><font face="Courier">LOAD DATA<BR>
+      <font color="#0000FF">INFILE 'c:\temp\sqlldr9a.dat'<BR>
+      INFILE 'c:\temp\sqlldr9b.dat'</font>
+      <FONT COLOR="#FF0000"><BR>
+      </FONT>APPEND<BR>
+      INTO TABLE denver_prj<BR>
+      <font color="#0000FF">WHEN</font> projno = '101' (<br>
+      projno&nbsp; position(1:3)&nbsp; CHAR,<BR>
+      empno&nbsp;&nbsp; position(4:8)&nbsp; INTEGER EXTERNAL,<BR>
+      projhrs position(9:10) INTEGER EXTERNAL)<BR>
+      <BR>
+      INTO TABLE orlando_prj<BR>
+      <font color="#0000FF">WHEN</font> projno = '202' (<br>
+      projno&nbsp; position(1:3)&nbsp; CHAR,<BR>
+      empno&nbsp;&nbsp; position(4:8)&nbsp; INTEGER EXTERNAL,<BR>
+      projhrs position(9:10) INTEGER EXTERNAL)<BR>
+      <BR>
+      INTO TABLE misc_prj<BR>
+      <font color="#0000FF">WHEN</font> projno != '101' AND projno != '202' (<br>
+      projno&nbsp; position(1:3)&nbsp; CHAR,<BR>
+      empno&nbsp;&nbsp; position(4:8)&nbsp; INTEGER EXTERNAL,<BR>
+      projhrs position(9:10) INTEGER EXTERNAL)</font></td>
+          </tr>
+          <tr>
+    <td width="70%" bgcolor="#80FFFF"><FONT FACE="Courier">
+    sqlldr userid=uwclass/uwclass control=c:\load\sqlldr09.ctl
+    log=c:\load\demo9.log</FONT></td>
+          </tr>
+          <tr>
+    <td colspan="2">&nbsp;</td>
+          </tr>
+          <tr>
+    <td colspan="2"><font face="Arial" color="#808000"><strong>Demo 10</strong></font></td>
+          </tr>
+          <tr>
+    <td colspan="2"><FONT FACE="Arial" size="2">
+    Loading negative numeric values. Note Clark and Miller's records in the data file.
+    Note empty row</FONT></td>
+          </tr>
+          <tr>
+    <td width="30%" rowspan="2"><p align="center"><font face="Arial" size="2"><a href="sqlldr10.ctl">Control File</a><br>
+    <br>
+    <a href="sqlldr10.dat">Data File</a></font></td>
+    <td width="70%"><font face="Courier">LOAD DATA<BR>
+      INFILE 'c:\temp\sqlldr10.dat'<BR>
+      INTO TABLE emp<br>
+      REJECT ROWS WITH ALL NULL FIELDS<br>
+      (<BR>
+      empno&nbsp; POSITION(01:04) INTEGER EXTERNAL,<BR>
+      ename&nbsp; POSITION(06:15) CHAR,<BR>
+      job&nbsp;&nbsp;&nbsp; POSITION(17:25) CHAR,<BR>
+      mgr&nbsp;&nbsp;&nbsp; POSITION(27:30) INTEGER EXTERNAL,<BR>
+      sal&nbsp;&nbsp;&nbsp; POSITION(32:39) DECIMAL EXTERNAL,<BR>
+      comm&nbsp;&nbsp; POSITION(41:48) DECIMAL EXTERNAL,<BR>
+      deptno POSITION(50:51) INTEGER EXTERNAL)</font></td>
+          </tr>
+          <tr>
+    <td width="70%" bgcolor="#80FFFF"><FONT FACE="Courier">
+    sqlldr userid=uwclass/uwclass control=c:\load\sqlldr10.ctl log=c:\load\demo10.log</FONT></td>
+          </tr>
+          <tr>
+    <td colspan="2">&nbsp;</td>
+          </tr>
+          <tr>
+    <td colspan="2"><font face="Arial" color="#808000"><strong>Demo 11</strong></font></td>
+          </tr>
+          <tr>
+    <td colspan="2"><font face="Arial" size="2">Loading XML</font></td>
+          </tr>
+          <tr>
+    <td width="30%" rowspan="2"><p align="center"><font face="Arial" size="2"><a href="sqlldr11.ctl">
+      Control
+    File</a></font></td>
+    <td width="70%"><font face="Courier">LOAD DATA<br>
+      INFILE *<br>
+      INTO TABLE po_tab<br>
+      APPEND<br>
+      XMLTYPE (xmldata)<br>
+      FIELDS<br>
+      (xmldata CHAR(2000))</font></td>
+          </tr>
+          <tr>
+    <td width="70%" bgcolor="#80FFFF"><FONT FACE="Courier">CREATE TABLE po_tab  OF XMLTYPE;<br>
+      <br>
+      desc po_tab<br>
+      <br>
+      sqlldr userid=uwclass/uwclass
+      control=c:\load\sqlldr11.ctl log=c:\load\demo11.log<br>
+      <br>
+      set long 1000000<br>
+      <br>
+      SELECT * FROM po_tab;<br>
+      <br>
+      SELECT *<br>
+      FROM po_tab<br>
+      WHERE sys_nc_rowinfo$ LIKE '%Hurry%';</FONT></td>
+          </tr>
+          <tr>
+    <td colspan="2">&nbsp;</td>
+          </tr>
+          <tr>
+    <td colspan="2"><font face="Arial" color="#808000"><strong>Demo 12</strong></font></td>
+          </tr>
+          <tr>
+    <td colspan="2"><font face="Arial" size="2">Loading a CONSTANT, RECNUM, and
+      SYSDATE</font></td>
+          </tr>
+          <tr>
+    <td width="30%" rowspan="2"><p align="center"><font face="Arial" size="2">
+      <a href="sqlldr13.ctl">
+      Control
+    File</a></font></td>
+    <td width="70%"><font face="Courier">OPTIONS (ERRORS=100, SILENT=(FEEDBACK))<br>
+      LOAD DATA<br>
+      INFILE *<br>
+      REPLACE<br>
+      INTO TABLE dept<br>
+      FIELDS TERMINATED BY ','<br>
+      OPTIONALLY ENCLOSED BY '"'<br>
+      (recno RECNUM, deptno CONSTANT &quot;XX&quot;, dname, loc, tdate SYSDATE)</font></td>
+          </tr>
+          <tr>
+    <td width="70%" bgcolor="#80FFFF"><FONT FACE="Courier">
+    ALTER TABLE dept<br>
+    ADD (recno NUMBER(5), tdate DATE);<br>
+    <br>
+    desc dept<br>
+    <br>
+    sqlldr userid=uwclass/uwclass control=c:\load\sqlldr12.ctl
+    log=c:\load\demo12.log</FONT></td>
+          </tr>
+          <tr>
+    <td colspan="2">&nbsp;</td>
+          </tr>
+          <tr>
+    <td colspan="2"><font face="Arial" color="#808000"><strong>Demo 13</strong></font></td>
+          </tr>
+          <tr>
+    <td colspan="2"><font face="Arial" size="2">Setting READSIZE and BINDSIZE</font></td>
+          </tr>
+          <tr>
+    <td width="30%" rowspan="2" valign="top"><p align="center"><font face="Arial" size="2"><br>
+      The
+      data and control file for&nbsp;<br>
+      this demo can be found at&nbsp;<br>
+      $ORACLE_HOME/demo/schema/sh/<br>
+      <a href="sqlldr13.ctl">
+      cust1v3.ctl</a> and cust1v3.dat<br>
+      <br>
+      BINDSIZE and READSIZE&nbsp;<br>
+      do not apply to Direct Path Loads</font></td>
+    <td width="70%"><font face="Courier">LOAD DATA<br>
+      INFILE 'c:\temp\cust1v3.dat'<br>
+      INTO TABLE CUSTOMERS<br>
+      TRUNCATE<br>
+      FIELDS TERMINATED BY '|'<br>
+      OPTIONALLY ENCLOSED BY '"'<br>
+      (CUST_ID, CUST_FIRST_NAME, CUST_LAST_NAME, CUST_GENDER, CUST_YEAR_OF_BIRTH,
+      CUST_MARITAL_STATUS, CUST_STREET_ADDRESS, CUST_POSTAL_CODE, CUST_CITY,
+      CUST_CITY_ID, CUST_STATE_PROVINCE, CUST_STATE_PROVINCE_ID, COUNTRY_ID,
+      CUST_MAIN_PHONE_NUMBER, CUST_INCOME_LEVEL, CUST_CREDIT_LIMIT, CUST_EMAIL, CUST_TOTAL, CUST_TOTAL_ID, CUST_SRC_ID, CUST_EFF_FROM DATE(19) "YYYY-MM-DD-HH24-MI-SS",
+      CUST_EFF_TO DATE(19) "YYYY-MM-DD-HH24-MI-SS", CUST_VALID)</font></td>
+          </tr>
+          <tr>
+    <td width="70%" bgcolor="#80FFFF"><FONT FACE="Courier">conn sh/sh<br>
+      <br>
+      GRANT select ON customers TO uwclass;<br>
+      <br>
+      conn uwclass/uwclass<br>
+      <br>
+      CREATE TABLE customers AS<br>
+      SELECT * FROM sh.customers<br>
+      WHERE 1=2;<br>
+      <br>
+      desc customers<br>
+      <br>
+      <font color="#008080">-- run 1 - default sizing</font>
+    <br>
+    sqlldr userid=uwclass/uwclass control=c:\load\sqlldr13.ctl
+      log=c:\load\demo13.log<br>
+      <br>
+      Space allocated for bind array:                 251252 bytes(46 rows)<br>
+      Read   buffer bytes: 1048576<br>
+      Elapsed time was:     00:00:03.73<br>
+      CPU time was: 00:00:0<b><font color="#800080">1.25</font></b><br>
+      <br>
+      <font color="#008080">-- run 2 - double default to 2M</font><br>
+    sqlldr userid=uwclass/uwclass control=c:\load\sqlldr13.ctl
+      log=c:\load\demo13.log readsize=2048000 bindsize=2048000 rows=64<br>
+      <br>
+      Space allocated for bind array:                 349568 bytes(64 rows)<br>
+      Read   buffer bytes: 2048000<br>
+      <br>
+      Elapsed time was:     00:00:03.50<br>
+      CPU time was: 00:00:0<font color="#800080"><b>1.09</b></font><br>
+      <br>
+      <font color="#008080">-- run 3 - double default to 4M<br>
+      </font>
+    sqlldr userid=uwclass/uwclass control=c:\load\sqlldr13.ctl<br>
+      log=c:\load\demo13.log readsize=4096000 bindsize=4096000 rows=64<br>
+      <br>
+      Space allocated for bind array:                 349568 bytes(64 rows)<br>
+      Read   buffer bytes: 4096000<br>
+      <br>
+      Elapsed time was:     00:00:03.65<br>
+      CPU time was: 00:00:0<b><font color="#800080">1.12</font></b></FONT></td>
+          </tr>
+        </table>
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td ALIGN="center">
+        <table border="1" cellpadding="2" cellspacing="1" width="30%" bgcolor="#D8D8C4">
+          <tr>
+    <td align="center"><font face="Arial"><strong>Related Topics</strong></font></td>
+          </tr>
+          <tr>
+    <td align="center"><font face="Arial" size="2"><a href="datapump.html">Data Pump</a></font></td>
+          </tr>
+          <tr>
+    <td align="center"><FONT FACE="Arial" size="2"><A HREF="dbms_lob.html">DBMS_LOB</A></FONT></td>
+          </tr>
+          <tr>
+    <td align="center"><A HREF="import.html" TARGET="topic"><font face="Arial" size="2">Import</font></A></td>
+          </tr>
+          <tr>
+    <td align="center"><FONT FACE="Arial" size="2"><A HREF="intermedia_a.html">InterMedia Audio</A></FONT></td>
+          </tr>
+          <tr>
+    <td align="center"><FONT FACE="Arial" size="2"><A HREF="intermedia_v.html">InterMedia Video</A></FONT></td>
+          </tr>
+          <tr>
+    <td align="center"><font face="Arial" size="2"><A HREF="utl_file.html">UTL_FILE</A></font></td>
+          </tr>
+        </table>
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="right"><font 1" face="Arial" size="1"><a href="about.html">Contact Us</a> • <a HREF="legal.html">
+    Legal Notices and Terms of Use</a> • <a HREF="privacy.html">Privacy Statement</a></font></td>
+  </tr>
+</table>
+</div>
+</body>
+</html>

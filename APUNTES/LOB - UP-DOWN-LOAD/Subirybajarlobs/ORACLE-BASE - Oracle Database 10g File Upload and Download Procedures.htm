@@ -1,0 +1,592 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0075)http://www.oracle-base.com/articles/10g/FileUploadDownloadProcedures10g.php -->
+<?xml version="1.0" encoding="UTF-8"?><HTML xml:lang="en" 
+xmlns="http://www.w3.org/1999/xhtml"><HEAD><TITLE>ORACLE-BASE - Oracle Database 10g File Upload and Download Procedures</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252"><LINK 
+href="/favicon.ico" type=image/x-icon rel="shortcut icon"><!-- End of HtmlHeader.php --><!-- Start of Title and Meta -->
+<META 
+content="ORACLE-BASE - Oracle Database 10g File Upload and Download Procedures" 
+name=description>
+<META 
+content="oracle, oracle10g, 10g, file, document, upload, download, DAD, articles, certification" 
+name=keywords>
+<META content="index, follow" name=robots><!-- End of Title and Meta --><!-- Start of PageHeader.php --><LINK 
+title=Default 
+href="ORACLE-BASE - Oracle Database 10g File Upload and Download Procedures_archivos/Default.css" 
+type=text/css rel=stylesheet><LINK title=UnderlinedLinks 
+href="ORACLE-BASE - Oracle Database 10g File Upload and Download Procedures_archivos/UnderlinedLinks.css" 
+type=text/css rel="alternate stylesheet"><LINK title=OracleEM 
+href="ORACLE-BASE - Oracle Database 10g File Upload and Download Procedures_archivos/OracleEM.css" 
+type=text/css rel="alternate stylesheet"><LINK title=Olive 
+href="ORACLE-BASE - Oracle Database 10g File Upload and Download Procedures_archivos/Olive.css" 
+type=text/css rel="alternate stylesheet"><LINK title=HighContrast 
+href="ORACLE-BASE - Oracle Database 10g File Upload and Download Procedures_archivos/HighContrast.css" 
+type=text/css rel="alternate stylesheet"><LINK title=Inverted 
+href="ORACLE-BASE - Oracle Database 10g File Upload and Download Procedures_archivos/Inverted.css" 
+type=text/css rel="alternate stylesheet">
+<SCRIPT 
+src="ORACLE-BASE - Oracle Database 10g File Upload and Download Procedures_archivos/common.js" 
+type=text/javascript></SCRIPT>
+
+<SCRIPT 
+src="ORACLE-BASE - Oracle Database 10g File Upload and Download Procedures_archivos/switcher.js" 
+type=text/javascript></SCRIPT>
+
+<META content="MSHTML 6.00.2900.2873" name=GENERATOR></HEAD>
+<BODY>
+<TABLE style="WIDTH: 100%; TEXT-ALIGN: center; border-spacing: 0px">
+  <TBODY>
+  <TR>
+    <TD style="VERTICAL-ALIGN: bottom; TEXT-ALIGN: left"><A 
+      href="http://www.oracle-base.com/index.php"><IMG 
+      style="WIDTH: 243px; HEIGHT: 43px" alt="" 
+      src="ORACLE-BASE - Oracle Database 10g File Upload and Download Procedures_archivos/Title.gif"></A> 
+    </TD>
+    <TD style="VERTICAL-ALIGN: middle; WIDTH: 735px; TEXT-ALIGN: right">
+      <SCRIPT type=text/javascript><!--
+        google_ad_client = "pub-9901106718381505";
+        google_ad_width = 728;
+        google_ad_height = 90;
+        google_ad_format = "728x90_as";
+        google_color_border = "C0C0C1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "666699";
+        google_color_url = "666699";
+        google_color_text = "404040";
+        //--></SCRIPT>
+
+      <SCRIPT 
+      src="ORACLE-BASE - Oracle Database 10g File Upload and Download Procedures_archivos/show_ads.js" 
+      type=text/javascript>
+        </SCRIPT>
+    </TD></TR></TBODY></TABLE>
+<TABLE 
+style="PADDING-RIGHT: 1px; PADDING-LEFT: 1px; PADDING-BOTTOM: 1px; WIDTH: 100%; PADDING-TOP: 1px; TEXT-ALIGN: center; border-spacing: 1px">
+  <TBODY>
+  <TR>
+    <TD class=menu_box><!-- Toolbar *************************************************************************************  -->
+      <TABLE class=menu>
+        <TBODY>
+        <TR>
+          <TD class=menutitle>This Site</TD></TR>
+        <TR>
+          <TD class=menu>&nbsp;<A class=menu 
+            href="http://www.oracle-base.com/index.php">Home</A></TD></TR>
+        <TR>
+          <TD class=menu>&nbsp;<A class=menu 
+            href="http://www.oracle-base.com/dba/DBACategories.php">DBA 
+            Scripts</A></TD></TR>
+        <TR>
+          <TD class=menu>&nbsp;<A class=menu 
+            href="http://www.oracle-base.com/articles/8i/Articles8i.php">Oracle 
+            8i Articles</A></TD></TR>
+        <TR>
+          <TD class=menu>&nbsp;<A class=menu 
+            href="http://www.oracle-base.com/articles/9i/Articles9i.php">Oracle 
+            9i Articles</A></TD></TR>
+        <TR>
+          <TD class=menu>&nbsp;<A class=menu 
+            href="http://www.oracle-base.com/articles/10g/Articles10g.php">Oracle 
+            10g Articles</A></TD></TR>
+        <TR>
+          <TD class=menu>&nbsp;<A class=menu 
+            href="http://www.oracle-base.com/articles/misc/ArticlesMisc.php">Miscellaneous 
+            Articles</A></TD></TR>
+        <TR>
+          <TD class=menu>&nbsp;<A class=menu 
+            href="http://www.oracle-base.com/articles/linux/ArticlesLinux.php">Linux 
+            Articles</A></TD></TR>
+        <TR>
+          <TD class=menu>&nbsp;<A class=menu 
+            href="http://www.oracle-base.com/misc/OCPCertification.php">Oracle 
+            Certification</A></TD></TR>
+        <TR>
+          <TD class=menu>&nbsp;<A class=menu 
+            href="http://www.oracle-base.com/forums/">Forums</A></TD></TR>
+        <TR>
+          <TD class=menu>&nbsp;<A class=menu 
+            href="http://oracle-base.blogspot.com/">ORACLE-BASE Blog</A></TD></TR>
+        <TR>
+          <TD class=menu>&nbsp;<A class=menu 
+            href="http://www.oracle-base.com/aggregator/index.php">Blog 
+            Aggregator</A></TD></TR>
+        <TR>
+          <TD class=menu>&nbsp;<A class=menu 
+            href="http://www.oracle-base.com/misc/IndustryNews.php">Industry 
+            News</A></TD></TR>
+        <TR>
+          <TD class=menu>&nbsp;<A class=menu 
+            href="http://www.oracle-base.com/books/Books.php">Book 
+        Store</A></TD></TR>
+        <TR>
+          <TD class=menu>&nbsp;<A class=menu 
+            href="http://www.oracle-base.com/misc/TSHSQL.php">TSHSQL 
+          Download</A></TD></TR>
+        <TR>
+          <TD class=menu>&nbsp;<A class=menu 
+            href="http://www.oracle-base.com/misc/Firefox.php">Firefox Search 
+            Plugins</A></TD></TR>
+        <TR>
+          <TD class=menu>&nbsp;<A class=menu 
+            href="http://www.oracle-base.com/misc/SiteInfo.php">Site 
+        Info</A></TD></TR>
+        <TR>
+          <TD class=menu>&nbsp;<A class=menu 
+            href="http://www.oracle-base.com/links/Links.php">Links</A></TD></TR>
+        <TR>
+          <TD class=menu>&nbsp;<A class=menu 
+            href="http://www.oracle-base.com/articles/10g/FileUploadDownloadProcedures10g.php?display_type=printable">Printer 
+            Friendly</A></TD></TR>
+        <TR>
+          <TD class=menutitle style="WIDTH: 100%; TEXT-ALIGN: center" 
+          align=middle>Oracle Sites</TD></TR>
+        <TR>
+          <TD class=menu>&nbsp;<A class=menu 
+            href="http://www.oracle.com/">Oracle Corporation</A></TD></TR>
+        <TR>
+          <TD class=menu>&nbsp;<A class=menu 
+            href="http://www.oracle.com/technology">Technology Network</A></TD></TR>
+        <TR>
+          <TD class=menu>&nbsp;<A class=menu 
+            href="http://metalink.oracle.com/">Oracle Metalink</A></TD></TR>
+        <TR>
+          <TD class=menu>&nbsp;<A class=menu 
+            href="http://www.oracle.com/education/certification/">Oracle 
+            Certification</A></TD></TR>
+        <TR>
+          <TD class=menu>&nbsp;<A class=menu 
+            href="http://www.oracle.com/oramag/">Oracle Magazine</A></TD></TR>
+        <TR>
+          <TD class=menu>&nbsp;<A class=menu 
+            href="http://asktom.oracle.com/">Ask Tom</A></TD></TR>
+        <TR>
+          <TD class=menu>&nbsp;<A class=menu 
+            href="http://www.oracle.com/pls/tahiti/homepage?remark=tahiti">Oracle 
+            8i R3 Docs</A></TD></TR>
+        <TR>
+          <TD class=menu>&nbsp;<A class=menu 
+            href="http://www.oracle.com/pls/db901/homepage?remark=tahiti">Oracle 
+            9i R1 Docs</A></TD></TR>
+        <TR>
+          <TD class=menu>&nbsp;<A class=menu 
+            href="http://www.oracle.com/pls/db92/homepage?remark=tahiti">Oracle 
+            9i R2 Docs</A></TD></TR>
+        <TR>
+          <TD class=menu>&nbsp;<A class=menu 
+            href="http://www.oracle.com/pls/db10g/homepage?remark=tahiti">Oracle 
+            10g R1 Docs</A></TD></TR>
+        <TR>
+          <TD class=menu>&nbsp;<A class=menu 
+            href="http://www.oracle.com/pls/db102/homepage?remark=tahiti">Oracle 
+            10g R2 Docs</A></TD></TR>
+        <TR>
+          <TD class=menu>&nbsp;<A class=menu 
+            href="http://www.oracle.com/pls/ias902/homepage?remark=tahiti">Oracle 
+            9iAS Docs</A></TD></TR>
+        <TR>
+          <TD class=menu>&nbsp;<A class=menu 
+            href="http://www.oracle.com/pls/ias904/homepage?remark=tahiti">Oracle 
+            AS10g R1 Docs</A></TD></TR>
+        <TR>
+          <TD class=menu>&nbsp;<A class=menu 
+            href="http://www.oracle.com/pls/as1012/homepage?remark=tahiti">Oracle 
+            AS10g R2 Docs</A></TD></TR>
+        <TR>
+          <TD class=menu><BR><!-- Error Messages -->
+            <SCRIPT type=text/javascript>
+                <!--
+                function fnErrorMessageGo(form) {
+                  var error_url;
+                  for (var i=0; i < form.error_url.length; i++) {
+                    if (form.error_url[i].checked)
+                      error_url = form.error_url[i].value + form.search.value;
+                  }
+                  window.location = error_url;
+                }
+                -->
+              </SCRIPT>
+
+            <FORM action="" method=post>
+            <TABLE style="WIDTH: 100%; TEXT-ALIGN: center">
+              <TBODY>
+              <TR>
+                <TD 
+                style="BORDER-RIGHT: #616161 1px solid; PADDING-RIGHT: 1px; BORDER-TOP: #616161 1px solid; PADDING-LEFT: 1px; PADDING-BOTTOM: 1px; BORDER-LEFT: #616161 1px solid; WIDTH: 100%; PADDING-TOP: 1px; BORDER-BOTTOM: #616161 1px solid; TEXT-ALIGN: center; border-spacing: 1px">
+                  <TABLE 
+                  style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; WIDTH: 100%; PADDING-TOP: 0px; border-spacing: 0px">
+                    <TBODY>
+                    <TR>
+                      <TD class=small>Error Messages </TD></TR>
+                    <TR>
+                      <TD class=small><INPUT class=small maxLength=255 size=10 
+                        value=ORA- name=search> <INPUT class=smallbtn onclick=javascript:fnErrorMessageGo(this.form) type=button value=Go><BR>
+                        <TABLE 
+                        style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; border-spacing: 0px">
+                          <TBODY>
+                          <TR>
+                            <TD class=small colSpan=2><INPUT type=radio 
+                              value=http://tahiti.oracle.com/pls/tahiti/tahiti.error_search?search= 
+                              name=error_url>8i R3</TD></TR>
+                          <TR>
+                            <TD class=small><INPUT type=radio 
+                              value=http://tahiti.oracle.com/pls/db901/db901.error_search?search= 
+                              name=error_url>9i R1</TD>
+                            <TD class=small><INPUT type=radio 
+                              value=http://tahiti.oracle.com/pls/db92/db92.error_search?search= 
+                              name=error_url>9i R2</TD></TR>
+                          <TR>
+                            <TD class=small><INPUT type=radio 
+                              value=http://tahiti.oracle.com/pls/db10g/db10g.error_search?search= 
+                              name=error_url>10g R1</TD>
+                            <TD class=small><INPUT type=radio CHECKED 
+                              value=http://tahiti.oracle.com/pls/db102/db102.error_search?search= 
+                              name=error_url>10g 
+                    R2</TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></FORM><!-- Error Messages --></TD></TR>
+        <TR>
+          <TD class=menu><!-- Search Documentation -->
+            <SCRIPT type=text/javascript>
+                <!--
+                function fnDocSearchGo(form) {
+                  var doc_url;
+                  for (var i=0; i < form.doc_url.length; i++) {
+                    if (form.doc_url[i].checked)
+                      doc_url = form.doc_url[i].value + form.word.value;
+                  }
+                  window.location = doc_url;
+                }
+                -->
+              </SCRIPT>
+
+            <FORM action="" method=post>
+            <TABLE style="WIDTH: 100%; TEXT-ALIGN: center">
+              <TBODY>
+              <TR>
+                <TD 
+                style="BORDER-RIGHT: #616161 1px solid; PADDING-RIGHT: 1px; BORDER-TOP: #616161 1px solid; PADDING-LEFT: 1px; PADDING-BOTTOM: 1px; BORDER-LEFT: #616161 1px solid; WIDTH: 100%; PADDING-TOP: 1px; BORDER-BOTTOM: #616161 1px solid; TEXT-ALIGN: center; border-spacing: 1px">
+                  <TABLE 
+                  style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; WIDTH: 100%; PADDING-TOP: 0px; border-spacing: 0px">
+                    <TBODY>
+                    <TR>
+                      <TD class=small>Search Oracle Docs </TD></TR>
+                    <TR>
+                      <TD class=small><INPUT class=small maxLength=255 size=10 
+                        name=word> <INPUT class=smallbtn onclick=javascript:fnDocSearchGo(this.form) type=button value=Go><BR>
+                        <TABLE cellSpacing=0 cellPadding=0>
+                          <TBODY>
+                          <TR>
+                            <TD class=small><INPUT type=radio 
+                              value=http://metalink.oracle.com/metalink/plsql/ml2_gui.handleSearchRequest?p_text= 
+                              name=doc_url>Metalink</TD>
+                            <TD class=small><INPUT type=radio 
+                              value=http://tahiti.oracle.com/pls/tahiti/tahiti.drilldown?remark=quick_search&amp;word= 
+                              name=doc_url>8i R3</TD></TR>
+                          <TR>
+                            <TD class=small><INPUT type=radio 
+                              value=http://tahiti.oracle.com/pls/db901/db901.drilldown?remark=quick_search&amp;word= 
+                              name=doc_url>9i R1</TD>
+                            <TD class=small><INPUT type=radio 
+                              value=http://tahiti.oracle.com/pls/db92/db92.drilldown?remark=quick_search&amp;word= 
+                              name=doc_url>9i R2</TD></TR>
+                          <TR>
+                            <TD class=small><INPUT type=radio 
+                              value=http://tahiti.oracle.com/pls/db10g/db10g.drilldown?remark=quick_search&amp;word= 
+                              name=doc_url>10g R1</TD>
+                            <TD class=small><INPUT type=radio CHECKED 
+                              value=http://tahiti.oracle.com/pls/db102/drilldown?remark=quick_search&amp;word= 
+                              name=doc_url>10g 
+                    R2</TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></FORM><!-- Search Documentation --></TD></TR>
+        <TR>
+          <TD class=menu><!-- Search Google -->
+            <FORM action=http://www.google.com/custom method=get>
+            <TABLE style="WIDTH: 100%; TEXT-ALIGN: center">
+              <TBODY>
+              <TR>
+                <TD 
+                style="BORDER-RIGHT: #616161 1px solid; PADDING-RIGHT: 1px; BORDER-TOP: #616161 1px solid; PADDING-LEFT: 1px; PADDING-BOTTOM: 1px; BORDER-LEFT: #616161 1px solid; WIDTH: 100%; PADDING-TOP: 1px; BORDER-BOTTOM: #616161 1px solid; TEXT-ALIGN: center; border-spacing: 1px">
+                  <TABLE 
+                  style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; WIDTH: 100%; PADDING-TOP: 0px; border-spacing: 0px">
+                    <TBODY>
+                    <TR>
+                      <TD class=small><A 
+                        href="http://www.google.com/custom"><IMG alt=Google 
+                        src="ORACLE-BASE - Oracle Database 10g File Upload and Download Procedures_archivos/GoogleSmall.gif"></A> 
+                      </TD></TR>
+                    <TR>
+                      <TD class=small><INPUT class=small maxLength=255 size=10 
+                        name=q> <INPUT class=smallbtn type=submit value=Go name=sa> 
+                        <INPUT type=hidden value=oracle-base.com 
+                        name=domains><BR><INPUT type=radio CHECKED 
+                        value=oracle-base.com name=sitesearch>Site <INPUT 
+                        type=radio value="" name=sitesearch>Web <INPUT 
+                        type=hidden value=pub-9901106718381505 name=client> 
+                        <INPUT type=hidden value=1 name=forid> <INPUT 
+                        type=hidden value=ISO-8859-1 name=ie> <INPUT type=hidden 
+                        value=ISO-8859-1 name=oe> <INPUT type=hidden 
+                        value=GALT:#666699;GL:1;DIV:#C0C0C1;VLC:666699;AH:center;BGC:FFFFFF;LBGC:FFFFFF;ALC:666699;LC:666699;T:404040;GFNT:C0C0C1;GIMP:C0C0C1;LH:43;LW:243;L:http://www.oracle-base.com/images/Title.gif;S:http://www.oracle-base.com;FORID:1; 
+                        name=cof> <INPUT type=hidden value=en name=hl> 
+                    </TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></FORM><!-- Search Google --></TD></TR>
+        <TR>
+          <TD class=menu style="TEXT-ALIGN: center"><A 
+            href="http://www.dba-oracle.com/oracle_command_syntax_poster.htm"><IMG 
+            style="WIDTH: 120px; HEIGHT: 90px" alt="" 
+            src="ORACLE-BASE - Oracle Database 10g File Upload and Download Procedures_archivos/ad_cmnd_syntax.gif"></A></TD></TR></TBODY></TABLE><BR></TD>
+    <TD 
+      class=main_box><!-- End of PageHeader.php --><!-- Start of Content --><A 
+      id=Top></A>
+      <H1>File Upload and Download Procedures in Oracle Database 10g</H1>This 
+      article is an update of a previous Oracle9i article, which includes some 
+      modified configuration steps necessary in Oracle 10g. For this procedure 
+      to work the HTTP Server software, available on the Companion CD, must be 
+      installed into a separate ORACLE_HOME, typically:<BR>
+      <BLOCKQUOTE><PRE>/u01/app/oracle/product/10.1.0/client_1</PRE></BLOCKQUOTE>The example 
+      assumes the the ORACLE_HOME environment variable has been set to this path 
+      also:<BR>
+      <BLOCKQUOTE><PRE>ORACLE_HOME=/u01/app/oracle/product/10.1.0/client_1; export ORACLE_HOME</PRE></BLOCKQUOTE>Oracle 
+      provide a mechanism to upload and download files directly from the 
+      database using a Database Access Descriptor (DAD). In this article I'll 
+      demonstrate how it works with a simple example.<BR><BR>First a Database 
+      Access Descriptor (DAD) must be created. Add the following entry to the 
+      $ORACLE_HOME/Apache/modplsql/conf/dads.conf file:<BR>
+      <BLOCKQUOTE><PRE>&lt;Location /pls/UTILS&gt;
+  SetHandler pls_handler
+  Order deny,allow
+  Allow from all
+  AllowOverride None
+  PlsqlDatabaseUsername         utils 
+  PlsqlDatabasePassword         utils
+  PlsqlDatabaseConnectString    dev
+  PlsqlAuthenticationMode       Basic
+  PlsqlDocumentTablename        utils.documents
+  PlsqlDocumentPath             docs
+  PlsqlDocumentProcedure        document_api.download
+&lt;/Location&gt;</PRE></BLOCKQUOTE>Run the following command to obfuscate 
+      the DAD password:<BR>
+      <BLOCKQUOTE><PRE>cd $ORACLE_HOME/Apache/modplsql/conf/
+perl dadTool.pl -o</PRE></BLOCKQUOTE>Make sure the 
+      <CODE>PlsqlDatabaseConnectString</CODE> parameter value has a 
+      corresponding entry in the "$ORACLE_HOME/network/admin/tnsnames.ora" file 
+      for the client ORACLE_HOME. With this in place restart the HTTP server 
+      using the following commands:<BR>
+      <BLOCKQUOTE><PRE>$ORACLE_HOME/opmn/bin/opmnctl stopall
+$ORACLE_HOME/opmn/bin/opmnctl startall</PRE></BLOCKQUOTE>For the upload to 
+      be successful the <CODE>documents</CODE> table must be created with the 
+      following structure:<BR>
+      <BLOCKQUOTE><PRE>CREATE TABLE documents (
+  name           VARCHAR2(256) UNIQUE NOT NULL,
+  mime_type      VARCHAR2(128),
+  doc_size       NUMBER,
+  dad_charset    VARCHAR2(128),
+  last_updated   DATE,
+  content_type   VARCHAR2(128),
+  blob_content   BLOB
+)
+/</PRE></BLOCKQUOTE>Next we create a package specification which will 
+      contain all the necessary code:<BR>
+      <BLOCKQUOTE><PRE>CREATE OR REPLACE PACKAGE document_api AS
+
+PROCEDURE upload (file  IN  VARCHAR2);
+PROCEDURE download;
+PROCEDURE download (file  IN  VARCHAR2);
+
+END;
+/
+SHOW ERRORS</PRE></BLOCKQUOTE>Then the package body:<BR>
+      <BLOCKQUOTE><PRE>CREATE OR REPLACE PACKAGE BODY document_api AS
+
+-- ----------------------------------------------------------------------------
+PROCEDURE upload (file  IN  VARCHAR2) AS
+-- ----------------------------------------------------------------------------
+  l_real_name  VARCHAR2(1000);
+BEGIN
+
+  HTP.htmlopen;
+  HTP.headopen;
+  HTP.title('File Uploaded');
+  HTP.headclose;
+  HTP.bodyopen;
+  HTP.header(1, 'Upload Status');
+
+  l_real_name := SUBSTR(file, INSTR(file, '/') + 1);
+
+  BEGIN
+    -- Delete any existing document to allow update.
+    DELETE FROM documents
+    WHERE  name = l_real_name;
+
+    -- Update the prefixed name with the real file name.
+    UPDATE documents
+    SET    name = l_real_name
+    WHERE  name = file;
+
+    HTP.print('Uploaded ' || l_real_name || ' successfully.');
+  EXCEPTION
+    WHEN OTHERS THEN
+      HTP.print('Upload of ' || l_real_name || ' failed.');
+      HTP.print(SQLERRM);
+  END;
+  HTP.br;
+
+  -- Create some links to demonstrate URL downloads.
+  HTP.br;
+  HTP.print('URL Downloads:');
+  HTP.br;
+  FOR cur_rec IN (SELECT name FROM documents) LOOP
+    HTP.anchor('docs/' || cur_rec.name, 'docs/' || cur_rec.name);
+    HTP.br;
+  END LOOP;
+
+  -- Create some links to demonstrate direct downloads.
+  HTP.br;
+  HTP.print('Direct Downloads:');
+  HTP.br;
+  FOR cur_rec IN (SELECT name FROM documents) LOOP
+    HTP.anchor('document_api.download?file=' || cur_rec.name, 'document_api.download?file=' || cur_rec.name);
+    HTP.br;
+  END LOOP;
+
+  HTP.bodyclose;
+  HTP.htmlclose;
+END;
+-- ----------------------------------------------------------------------------
+
+
+-- ----------------------------------------------------------------------------
+PROCEDURE download IS
+-- ----------------------------------------------------------------------------
+  l_filename  VARCHAR2(255);
+BEGIN
+  l_filename := SUBSTR(OWA_UTIL.get_cgi_env('PATH_INFO'), 2);
+  WPG_DOCLOAD.download_file(l_filename);
+EXCEPTION
+  WHEN OTHERS THEN
+    HTP.htmlopen;
+    HTP.headopen;
+    HTP.title('File Downloaded');
+    HTP.headclose;
+    HTP.bodyopen;
+    HTP.header(1, 'Download Status');
+    HTP.print('Download of ' || l_filename || ' failed.');
+    HTP.print(SQLERRM);
+    HTP.bodyclose;
+    HTP.htmlclose;
+END;
+-- ----------------------------------------------------------------------------
+
+
+-- ----------------------------------------------------------------------------
+PROCEDURE download (file  IN  VARCHAR2) AS
+-- ----------------------------------------------------------------------------
+  l_blob_content  documents.blob_content%TYPE;
+  l_mime_type     documents.mime_type%TYPE;
+BEGIN
+  SELECT blob_content,
+         mime_type
+  INTO   l_blob_content,
+         l_mime_type
+  FROM   documents
+  WHERE  name = file;
+
+  OWA_UTIL.mime_header(l_mime_type, FALSE);
+  HTP.p('Content-Length: ' || DBMS_LOB.getlength(l_blob_content));
+  OWA_UTIL.http_header_close;
+
+  WPG_DOCLOAD.download_file(l_blob_content);
+EXCEPTION
+  WHEN OTHERS THEN
+    HTP.htmlopen;
+    HTP.headopen;
+    HTP.title('File Downloaded');
+    HTP.headclose;
+    HTP.bodyopen;
+    HTP.header(1, 'Download Status');
+    HTP.print(SQLERRM);
+    HTP.bodyclose;
+    HTP.htmlclose;
+END;
+-- ----------------------------------------------------------------------------
+
+END;
+/
+SHOW ERRORS</PRE></BLOCKQUOTE>Once this code is loaded an upload can be 
+      performed by adjusting the form action in the <A 
+      href="http://www.oracle-base.com/articles/10g/upload.html">upload.html</A> 
+      file.<BR><BR>The <CODE>upload</CODE> procedure does not really upload the 
+      file as this is done automatically by the DAD. It simply allows you to 
+      perform additional processing if necessary. Oracle prefixes a the file 
+      name with a generated folder name to reduce the posibility of name 
+      conflicts. In this example the files are renamed to their original 
+      names.<BR><BR>In addition the upload code produces two types of links to 
+      test the download code. The first set of links use the "document access 
+      path" and the "document access procedure" defined in the DAD. These allow 
+      access to the files using a regular URL, masking the procedure call which 
+      actually returns the file. Using the document access path in the URL 
+      causes the DAD to call the document access procedure. The requested file 
+      name must be retrieved from the URL and used in the 
+      <CODE>WPG_DOCLOAD.download_file</CODE> procedure call.<BR><BR>The second 
+      set of links call an alternative <CODE>download</CODE> procedure directly. 
+      In this case file name must be specified as a parameter.<BR><BR>For 
+      further information see:<BR>
+      <UL>
+        <LI><A 
+        href="http://download-west.oracle.com/docs/cd/B14117_01/server.101/b12255/confmods.htm#1055214">Creating 
+        a DAD</A> </LI></UL>Hope this helps. Regards Tim...<BR><BR><A 
+      href="http://www.oracle-base.com/articles/10g/FileUploadDownloadProcedures10g.php#Top">Back 
+      to the 
+    Top.</A><BR><!-- End of Content --><!-- Start of PageFooter.php --></TD></TR></TBODY></TABLE>
+<DIV class=center><BR>This article is currently rated<IMG alt=Rating 
+src="ORACLE-BASE - Oracle Database 10g File Upload and Download Procedures_archivos/stars-3-0.gif">for 
+972 votes.<BR><BR>Rate this article:<A 
+href="http://www.oracle-base.com/misc/RatePage.php?url=/articles/10g/FileUploadDownloadProcedures10g.php&amp;vote=0"><IMG 
+alt="0 Stars" 
+src="ORACLE-BASE - Oracle Database 10g File Upload and Download Procedures_archivos/stars-0-0.gif"></A><A 
+href="http://www.oracle-base.com/misc/RatePage.php?url=/articles/10g/FileUploadDownloadProcedures10g.php&amp;vote=1"><IMG 
+alt="1 Stars" 
+src="ORACLE-BASE - Oracle Database 10g File Upload and Download Procedures_archivos/stars-1-0.gif"></A><A 
+href="http://www.oracle-base.com/misc/RatePage.php?url=/articles/10g/FileUploadDownloadProcedures10g.php&amp;vote=2"><IMG 
+alt="2 Stars" 
+src="ORACLE-BASE - Oracle Database 10g File Upload and Download Procedures_archivos/stars-2-0.gif"></A><A 
+href="http://www.oracle-base.com/misc/RatePage.php?url=/articles/10g/FileUploadDownloadProcedures10g.php&amp;vote=3"><IMG 
+alt="3 Stars" 
+src="ORACLE-BASE - Oracle Database 10g File Upload and Download Procedures_archivos/stars-3-0.gif"></A><A 
+href="http://www.oracle-base.com/misc/RatePage.php?url=/articles/10g/FileUploadDownloadProcedures10g.php&amp;vote=4"><IMG 
+alt="4 Stars" 
+src="ORACLE-BASE - Oracle Database 10g File Upload and Download Procedures_archivos/stars-4-0.gif"></A><A 
+href="http://www.oracle-base.com/misc/RatePage.php?url=/articles/10g/FileUploadDownloadProcedures10g.php&amp;vote=5"><IMG 
+alt="5 Stars" 
+src="ORACLE-BASE - Oracle Database 10g File Upload and Download Procedures_archivos/stars-5-0.gif"></A><BR><BR><A 
+href="http://www.oracle-base.com/misc/Comments.php?page_id=91">0 comments, 
+read/add them...</A><BR><BR>
+<SCRIPT type=text/javascript><!--
+    google_ad_client = "pub-9901106718381505";
+    google_ad_width = 728;
+    google_ad_height = 90;
+    google_ad_format = "728x90_as";
+    google_color_border = "C0C0C1";
+    google_color_bg = "FFFFFF";
+    google_color_link = "666699";
+    google_color_url = "666699";
+    google_color_text = "404040";
+    //--></SCRIPT>
+
+<SCRIPT 
+src="ORACLE-BASE - Oracle Database 10g File Upload and Download Procedures_archivos/show_ads.js" 
+type=text/javascript>
+    </SCRIPT>
+<BR>
+<TABLE style="WIDTH: 100%">
+  <TBODY>
+  <TR>
+    <TD style="WIDTH: 33%; TEXT-ALIGN: left"><A 
+      href="http://validator.w3.org/check?uri=referer"><IMG height=31 
+      alt="Valid XHTML 1.1" 
+      src="ORACLE-BASE - Oracle Database 10g File Upload and Download Procedures_archivos/valid-xhtml11.png" 
+      width=88></A> </TD>
+    <TD style="WIDTH: 34%; TEXT-ALIGN: center"><A class=footer 
+      href="http://www.oracle-base.com/misc/SiteInfo.php#copyright">Copyright 
+      &amp; Disclaimer</A> </TD>
+    <TD style="WIDTH: 33%; TEXT-ALIGN: right"><A 
+      href="http://jigsaw.w3.org/css-validator/check/referer"><IMG 
+      style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; WIDTH: 88px; BORDER-BOTTOM: 0px; HEIGHT: 31px" 
+      alt="Valid CSS!" 
+      src="ORACLE-BASE - Oracle Database 10g File Upload and Download Procedures_archivos/vcss.gif"></A> 
+    </TD></TR></TBODY></TABLE></DIV><!-- End of PageFooter.php --><!-- Start of HtmlFooter.php --></BODY></HTML>
