@@ -1,0 +1,55 @@
+
+SQL*Loader: Release 10.2.0.1.0 - Production on Jue Nov 2 10:39:28 2006
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+Archivo de Control:   A:\control.ctl
+Archivo de Datos:      a:\TituloAutorNacionalidad.txt
+  Archivo de Errores:     A:\TituloAutorNacionalidad.bad
+  Desechar Archivo:  ninguno especificado
+ 
+ (Permitir todos los registros desechados)
+
+Número a cargar: ALL
+Número a ignorar: 0
+Errores permitidos: 5
+Matriz de enlace:     64 filas, máximo de 256000 bytes
+Continuación:    ninguno especificado
+Ruta de acceso utilizada:      Convencional
+Opciones silenciosas: FEEDBACK
+Tabla TIT_AUT_NAC, cargada de cada registro lógico.
+Opción INSERT activa para esta tabla: INSERT
+
+   Nombre Columna               Posición   Long  Term Entorno Tipo de Dato
+------------------------------ ---------- ----- ---- ---- ---------------------
+TITULO                              FIRST     *   #  O(") CHARACTER            
+AUTOR                                NEXT     *   #  O(") CHARACTER            
+NACIONALIDAD                         NEXT     *   #  O(") CHARACTER            
+
+Registro 13: Rechazado - Error en tabla TIT_AUT_NAC, columna NACIONALIDAD.
+Columna no encontrada antes del fin de registro lógico (utilice TRAILING NULLCOLS)
+Registro 209: Rechazado - Error en tabla TIT_AUT_NAC, columna NACIONALIDAD.
+Columna no encontrada antes del fin de registro lógico (utilice TRAILING NULLCOLS)
+Registro 212: Rechazado - Error en tabla TIT_AUT_NAC, columna NACIONALIDAD.
+Columna no encontrada antes del fin de registro lógico (utilice TRAILING NULLCOLS)
+
+Tabla TIT_AUT_NAC:
+  269 Filas se ha cargado correctamente.
+  3 Filas no cargada debido a errores de datos.
+  0 Filas no cargada porque todas las cláusulas WHEN han fallado.
+  0 Filas no cargada porque todos los campos eran nulos.
+
+
+Espacio asignado a matriz de enlace:            49536 bytes (64 filas)
+Bytes de buffer de lectura: 1048576
+
+Total de registros lógicos ignorados:          0
+Total de registros lógicos leídos:         272
+Total de registros lógicos rechazados:         3
+Total de registros lógicos desechados:        0
+
+La ejecución empezó en Jue Nov 02 10:39:28 2006
+La ejecución terminó en Jue Nov 02 10:39:30 2006
+
+Tiempo transcurrido:     00:00:01.82
+Tiempo de CPU:         00:00:00.24

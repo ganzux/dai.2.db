@@ -1,0 +1,85 @@
+DROP TABLE EMP;
+DROP TABLE DEPT;
+CREATE TABLE DEPT (
+ DEPTNO              NUMBER(2) NOT NULL,
+ DNAME               VARCHAR2(14),
+ LOC                 VARCHAR2(13),
+ CONSTRAINT DEPT_PRIMARY_KEY PRIMARY KEY (DEPTNO));
+
+INSERT INTO DEPT VALUES (10,'ACCOUNTING','NEW YORK');
+INSERT INTO DEPT VALUES (20,'RESEARCH','DALLAS');
+INSERT INTO DEPT VALUES (30,'SALES','CHICAGO');
+INSERT INTO DEPT VALUES (40,'OPERATIONS','BOSTON');
+
+
+CREATE TABLE EMP (
+ EMPNO               NUMBER(4) NOT NULL,
+ ENAME               VARCHAR2(10),
+ JOB                 VARCHAR2(9),
+ MGR                 NUMBER(4) CONSTRAINT EMP_SELF_KEY REFERENCES EMP (EMPNO),
+ HIREDATE            DATE,
+ SAL                 NUMBER(7,2),
+ COMM                NUMBER(7,2),
+ DEPTNO              NUMBER(2) NOT NULL,
+ CONSTRAINT EMP_FOREIGN_KEY FOREIGN KEY (DEPTNO) REFERENCES DEPT (DEPTNO),
+ CONSTRAINT EMP_PRIMARY_KEY PRIMARY KEY (EMPNO));
+ 
+ insert into emp values
+	(7839,'KING','PRESIDENT',NULL,TO_DATE('11-17-1981','MM-DD-YYYY'),
+         5000,NULL,10);
+
+insert into emp values
+	(7698,'BLAKE','MANAGER',7839,TO_DATE('05-1-1981','MM-DD-YYYY'),
+         2850,NULL,30);
+
+insert into emp values
+	(7900,'JAMES','CLERK',7698,TO_DATE('12-3-1981','MM-DD-YYYY'),
+         950,NULL,30);
+
+insert into emp values
+	(7566,'JONES','MANAGER',7839,TO_DATE('04-02-1981','MM-DD-YYYY'),
+         2975,NULL,20);
+
+insert into emp values
+	(7902,'FORD','ANALYST',7566,TO_DATE('12-3-1981','MM-DD-YYYY'),
+         3000,NULL,20);
+
+insert into emp values
+	(7369,'SMITH','CLERK',7902,TO_DATE('12-17-1980','MM-DD-YYYY'),
+         800,NULL,20);
+
+insert into emp values
+	(7499,'ALLEN','SALESMAN',7698,TO_DATE('02-20-1981','MM-DD-YYYY'),
+         1600,300,30);
+
+insert into emp values
+	(7521,'WARD','SALESMAN',7698,TO_DATE('02-22-1981','MM-DD-YYYY'),
+         1250,500,30);
+
+
+insert into emp values
+	(7654,'MARTIN','SALESMAN',7698,TO_DATE('09-28-1981','MM-DD-YYYY'),
+         1250,1400,30);
+
+
+insert into emp values
+	(7782,'CLARK','MANAGER',7839,TO_DATE('06-9-1981','MM-DD-YYYY'),
+         2450,NULL,10);
+
+insert into emp values
+	(7788,'SCOTT','ANALYST',7566,TO_DATE('09-12-1981','MM-DD-YYYY'),3000,NULL,20);
+
+insert into emp values
+	(7844,'TURNER','SALESMAN',7698,TO_DATE('09-8-1981','MM-DD-YYYY'),
+         1500,0,30);
+
+insert into emp values
+	(7876,'ADAMS','CLERK',7788,TO_DATE('12-1-1983','MM-DD-YYYY'),1100,NULL,20);
+
+
+
+insert into emp values
+	(7934,'MILLER','CLERK',7782,TO_DATE('01-23-1982','MM-DD-YYYY'),
+         1300,NULL,10);
+		 
+COMMIT;

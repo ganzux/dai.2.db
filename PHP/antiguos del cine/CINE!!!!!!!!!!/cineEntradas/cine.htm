@@ -1,0 +1,76 @@
+<p align="center">CheckBox utilizados en PL/SQL</p>
+<form name="form1" method="GET" action="reservas.htm"><table width="50%"  border="0" align="center" cellspacing="5" bgcolor="#007070">
+  <tr>
+    <td><div align="center"><input type="checkbox" name="asiento" value="1"></div></td>
+    <td><div align="center"><input type="checkbox" name="asiento" value="2"></div></td>
+    <td><div align="center"><input type="checkbox" name="asiento" value="3"></div></td>
+  </tr>
+  <tr>
+    <td><div align="center"><input type="checkbox" name="asiento" value="4"></div></td>
+    <td><div align="center"><input type="checkbox" name="asiento" value="5"></div></td>
+    <td><div align="center"><input type="checkbox" name="asiento" value="6"></div></td>
+  </tr>
+  <tr>
+    <td><div align="center"><input name="asiento" type="checkbox" disabled value="7" checked></div></td>
+    <td><div align="center"><input name="asiento" type="checkbox" disabled value="8" checked></div></td>
+	<td><div align="center"><input type="checkbox" name="asiento" value="9"></div></td>
+  </tr>
+</table>
+  <p align="center">
+    <input type="submit" value="Reservar Asientos">
+  </p>
+</form>
+<p align="center">&nbsp;</p>
+  <form name="form2" method="GET" action="reservas.php">
+<p align="center">COJONUDO :D</p>
+<table width="50%"  border="0" align="center" cellspacing="5" bgcolor="#007070">
+  <tr>
+    <td><div align="center"><img src="imagenes/libre.png" name="asiento0" width="25" height="25" onClick="CambiaImagen('asiento0')"><input type="hidden" name="asiento0" value="0"></div></td>
+    <td><div align="center"><img src="imagenes/libre.png" name="asiento1" width="25" height="25" onClick="CambiaImagen('asiento1')"><input type="hidden" name="asiento1" value="0"></div></td>
+    <td><div align="center"><img src="imagenes/libre.png" name="asiento2" width="25" height="25" onClick="CambiaImagen('asiento2')"><input type="hidden" name="asiento2" value="0"></div></td>
+  </tr>
+  <tr>
+    <td><div align="center"><img src="imagenes/libre.png" name="asiento3" width="25" height="25" onClick="CambiaImagen('asiento3')"><input type="hidden" name="asiento3" value="0"></div></td>
+    <td><div align="center"><img src="imagenes/libre.png" name="asiento4" width="25" height="25" onClick="CambiaImagen('asiento4')"><input type="hidden" name="asiento4" value="0"></div></td>
+    <td><div align="center"><img src="imagenes/libre.png" name="asiento5" width="25" height="25" onClick="CambiaImagen('asiento5')"><input type="hidden" name="asiento5" value="0"></div></td>
+  </tr>
+    <tr>
+    <td><div align="center"><img src="imagenes/ocupado.png" name="asiento6" width="24" height="24" onClick="CambiaImagen('asiento6')"></div></td>
+    <td><div align="center"><img src="imagenes/ocupado.png" name="asiento7" width="24" height="24" onClick="CambiaImagen('asiento7')"></div></td>
+    <td><div align="center"><img src="imagenes/libre.png" name="asiento8" width="25" height="25" onClick="CambiaImagen('asiento8')"><input type="hidden" name="asiento8" value="0"></div></td>
+  </tr>
+</table>
+
+ 
+    <div align="center">
+		<input type="hidden" name="butacas" value="9">
+		<h4>id_proy:<input type="text" name="id_proy">
+      <input type="submit" value="Reservar Asientos">
+    </div>
+  </form>
+  <p>&nbsp;</p>
+  <p align="center">
+    <SCRIPT>
+function CambiaImagen (nombre) {
+	if (document[nombre].width == "25")
+		{
+		document[nombre].src = "imagenes/seleccionado.png";
+		document[nombre].width = "26";
+		document[nombre].height = "26";	
+		document.form2[nombre].value=1;
+		}
+	else if (document[nombre].width == "26")
+		{
+		document[nombre].src = "imagenes/libre.png";
+		document[nombre].width = "25";
+		document[nombre].height = "25";	
+		document.form2[nombre].value=0;
+		}
+	else
+		{
+		alert("El asiento está ocupado");
+		}
+}
+    </SCRIPT>
+</p>
+  

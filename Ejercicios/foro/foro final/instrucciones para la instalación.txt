@@ -1,0 +1,246 @@
+		--------------------------
+		--------------------------
+		--                      --
+		--        PREVIO        --
+		--                      --
+		--------------------------
+		--------------------------
+
+
+Proyecto de Foro desarrollado en PL / SQL para sistemas Oracle.
+
+CopyLeft Álvaro Alcedo Moreno, Febrero de 2007
+
+Imágenes y hoja de estilso sacadas del tema SubSilver de PhpBB
+
+Para cualquier consulta, diríjase a WwW.AlVaRiTo.NeT y a itoito@gmail.com
+
+
+
+
+		--------------------------
+		--------------------------
+		--                      --
+		--    INSTRUCCIONES     --
+		--                      --
+		--------------------------
+		--------------------------
+
+Nos encontramos con tres archivos de código fuente: subebaja.sql, foro_script.sql y cuerpo.sql.
+
+Lo primero que tendremos que hacer será abrir una consola SQL PLUS y conectarnos con un usuario
+que tenga privilegios para poder crear procedimientos y paquetes.
+
+------------------------------
+
+El primer archivo a cargar en la base de datos será el de tablas y vistas, para ello utilizaremos
+el script "foro_script.sql", que contiene todas las órdenes.
+El comando a lanzar será:
+
+		@ 'Ruta completa del archivo\foro_script.sql'
+
+respetando la @ y las comillas. Este Script creará cuatro sequences seq_foro_usu, seq_foro_men,
+seq_foro_tem y seq_foro_arc, que servirán como PK en las tablas de usuarios, mensajes, temas y
+archivos.
+También las tablas documents, foro_mensajes, foro_temas y foro_usuarios. La primera almacenará
+los archivos en un campo BLOB, la segunda almacenará los mensajes de los usuarios, la tercera
+los temas y la cuarta la información de los uuarios.
+Crea diferentes vistas ue agilizarán el proceso y la escritura de todo el foro.
+Por último introduce algunos datos de muestra, como un usuario administrador y 11 temas.
+
+------------------------------
+
+Acto seguido subiremos a nuestro esquema de usaurio el archivo "subebaja.sql", encargado de hacer
+el INSERT o el UPDATE de los archivos que los usuarios quieran subir adjuntos a sus mensajes.
+
+		@ 'Ruta completa del archivo\subebaja.sql'
+
+El procedimiento más importante es el Upload, que ha sido retocado con JavaScript.
+
+------------------------------
+
+Por último cargaremos el archivo "cuerpo.sql", que contiene todo el código fuente del foro. Éste
+creará un paquete llamado foro, y muchos procedimientos públicos (y privados), pero se puede partir
+de la base de "foro.principal".
+
+		@ 'Ruta completa del archivo\cuerpo.sql'
+
+La cabecera del archivo la explico un poco a continuación; si quieres más detalles, dirígete al archivo.
+
+
+		TYPE coll_id_t IS TABLE OF VARCHAR2(5)
+		INDEX BY BINARY_INTEGER;
+		sin_respuesta coll_id_t;
+
+	Estas tres líneas son necesarias para hacer los CheckBox y que los usuarios
+	con rango de moderador puedan borrar mensajes.
+
+
+		PROCEDURE nuevo_tema;
+
+	Encargado de mostrar el formulario para crear un Nuevo tema
+
+
+		PROCEDURE alta (nombre VARCHAR2, login VARCHAR2, pass VARCHAR2, mail VARCHAR2);
+
+	Encargado de dar de alta a un usuario; comprueba todos los campos mediate JavaScript y SQL
+
+
+		PROCEDURE login (chorro VARCHAR2 DEFAULT NULL, autologin VARCHAR2 DEFAULT NULL);
+
+	Dada una cadena encriptada (chorro), efectuará el logueado del usuario
+
+
+		PROCEDURE salir;
+
+	Borra la Cokkie en caso de Existir
+
+
+		PROCEDURE registro;
+
+	Encargado de dar de alta al usuario
+
+
+		PROCEDURE principal;
+
+	Página principal
+
+
+		PROCEDURE muestra_temas;
+
+	Muestra la listade los temas disponibles
+
+
+		PROCEDURE perfil;
+
+	Muestra el perfil del usuario para poderlo editar
+
+
+		PROCEDURE muestra_tema (id_tema_pasada NUMBER DEFAULT NULL);
+
+	Muestra los mensajes de un tema específico
+
+
+		PROCEDURE crear_nuevo_tema (asunto VARCHAR2 DEFAULT NULL, usuario VARCHAR2 DEFAULT NULL);
+
+	Crea un nuevo tema
+	
+
+		PROCEDURE nuevo_mensaje(id_tema_pasada NUMBER DEFAULT NULL);
+
+	Crea un nuevo mensaje
+
+
+		PROCEDURE publicar (asunto VARCHAR2 DEFAULT NULL,texto VARCHAR2 DEFAULT NULL, archivo VARCHAR2 DEFAULT NULL, tema NUMBER DEFAULT NULL);
+
+	Publica un nuevo mensaje
+
+
+		PROCEDURE muestra_perfil (id_usua VARCHAR2 DEFAULT NULL);
+
+	Muestra el perfil público de un usuario
+		PROCEDURE ver_mensajes (id_pasada VARCHAR2 DEFAULT NULL);
+
+
+		PROCEDURE faq;
+
+	Frequently Answer And Question
+
+
+		PROCEDURE buscar;
+
+	Permite hacer búsquedas por autor o por texto
+
+
+		PROCEDURE editar(nom VARCHAR2 DEFAULT NULL, pas VARCHAR2 DEFAULT NULL, mai VARCHAR2 DEFAULT NULL);
+
+	Permite a un usuario editar sus propios mensajes
+
+
+		PROCEDURE adjunta;
+
+	Adjunta archivos a los mensajes
+
+
+		PROCEDURE lista_usuarios;
+
+	Lista los usuarios registrados
+
+
+		PROCEDURE recuerda;
+
+	Envía un e-mail al usuario con una clave generada aleatoriamente
+
+
+		PROCEDURE enviar(username VARCHAR2 DEFAULT NULL, mail VARCHAR2 DEFAULT NULL, operacion VARCHAR2 DEFAULT NULL, asunto VARCHAR2 DEFAULT NULL, texto VARCHAR2 DEFAULT NULL);
+		PROCEDURE enviar_mail (direccion VARCHAR2 DEFAULT NULL);
+		PROCEDURE envio_mail (sender IN VARCHAR2,recipient IN VARCHAR2,subject IN VARCHAR2,message IN VARCHAR2);
+
+	Para el envío de la clave y la comunicación entre usuarios
+
+
+		PROCEDURE borrar_mensajes (coll_resp foro.coll_id_t DEFAULT foro.sin_respuesta);
+
+	Permite a un moderador borrar los mensajes
+
+
+		PROCEDURE resultados_busqueda (clave VARCHAR2 DEFAULT NULL, autor VARCHAR2 DEFAULT NULL);
+
+	Muestra los resultados de una búsqueda
+
+
+		PROCEDURE dar_poderes (usuario VARCHAR2 DEFAULT NULL);
+
+	Da poderesde moderador o los quita al otros usuarios
+
+
+		PROCEDURE edita (mensaje NUMBER DEFAULT NULL);
+		PROCEDURE edita_mensaje (asunt VARCHAR2 DEFAULT NULL, texto VARCHAR2 DEFAULT NULL, mensaje VARCHAR2 DEFAULT NULL);
+
+	Edita los mensajes del usuario
+
+------------------------------
+
+Es MUY IMPORTANTE que conserves la estructura de los archivos, y los cuelgues tal cual en
+
+		../alumnos/Alvaro/css
+		../alumnos/Alvaro/jpg
+		../alumnos/Alvaro/js
+
+ya que de ahí será de donde coja la hoja de estilos CSS, las imágenes JPG/GIF y el algoritmo de
+encriptación MD5 en JavaScript. Sin estos archivos el programa podría no dar los resultados espera-
+dos y no llegaría a funcionar, ya que no podría encriptar las claves.
+
+
+-------------------------------
+
+
+		--------------------------
+		--------------------------
+		--                      --
+		--         NOTAS        --
+		--                      --
+		--------------------------
+		--------------------------
+
+Este foro es una PEQUEÑA MUESTRA, y no pretende ser una solución para nadie. Sí puede servir como
+base para la construcción de un sistema mucho mayor, pero comprendo y sé que existen aplicaciones
+muy superiores a nivel comercial y particular; es más, está basado en PhpBB, con bastantes limita-
+ciones por el tiempo que pude emplear en desarrollarlo.
+
+
+Si tienes cualquier duda en cuanto a la codificación o instalación del mismo, acude a mi, te intentaré
+ayudar en la medida de lo posible.
+
+
+Si quieres instalarte el software, ten en cuenta que será SIEMPRE BAJO TU RESPONSABILIDAD, y que
+lo único que pido es que incluyas el código fuente y, por supuesto, que me cites como autor del mismo.
+
+
+
+
+
+
+
+
+Sin más me despido, a 6 de febrero de 2007. Un abrazo, Álvaro Alcedo Moreno.

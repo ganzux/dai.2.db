@@ -1,0 +1,99 @@
+html{
+	overflow-x: auto;
+}
+
+body{ 
+	background: #FFF;
+	color: #222;
+	font-family: Verdana, Tahoma, Arial, Trebuchet MS, Sans-Serif, Georgia, Courier, Times New Roman, Serif;
+	font-size: 11px;
+	line-height: 135%;
+	margin: 0px;
+	padding: 0px; /* required for Opera to have 0 margin */
+	text-align: center; /* centers board in MSIE */
+}
+
+form{
+	display: inline;
+	margin: 0; /* removes mystery form tag gapping */
+	padding: 0; /* removes mystery form tag gapping */
+}
+
+a:link,
+a:visited,
+a:active{
+	background: transparent;
+	color: #222;
+	text-decoration: underline;
+}
+
+a:hover{
+	background: transparent;
+	color: #34498B;
+}
+	
+.calmonths{ 
+	background: #F0F5FA;
+	border: 1px solid #C2CFDF;
+	font-size: 18px; 
+	font-weight: bold; 
+	margin: 5px 0 5px 0;
+	padding: 8px;
+	text-align: center;
+}
+
+.weekday{
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.calmonths a{
+	text-decoration: none;
+}
+
+.calday,
+.calweekday{ 
+	background: #DFE6EF;
+	color: #666;
+	font-size: 11px;
+	font-weight: bold;
+	margin: 0;
+	padding: 4px;
+	text-align: right;
+}
+
+.calweekday{
+	border-right: 1px solid #AAA;
+	color: #222;
+	font-size: 14px;
+	padding: 6px;
+	text-align: center;
+}
+
+
+.input-warn,
+.input-green,
+.input-checkbox,
+input,
+textarea,
+select{
+	background: #FFF;
+	border: 1px solid #4C77B6;
+	color: #000;
+	font-family: verdana, helvetica, sans-serif;
+	font-size: 11px;
+	margin: 5px;
+	padding: 2px;
+	vertical-align: middle;
+}
+
+
+
+
+.htmltop{
+	background: #FDDBCC url(1/css_img_code.gif) no-repeat right;
+	color: #000;
+	font-weight: bold;
+	margin: 0 auto 0 auto;
+	padding: 3px;
+}
